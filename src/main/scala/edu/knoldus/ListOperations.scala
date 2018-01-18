@@ -28,19 +28,19 @@ class ListOperations {
     innerOperate(mainList, subList, subList, subList.length, subList.length)
   }
 
-  def splitList(list: List[Int], f: Int => Boolean): (List[Int], List[Int]) = {
-    def innerSplit(list: List[Int], firstList: List[Int], secondList: List[Int]): (List[Int], List[Int]) = {
+  def splitList[T](list: List[T], f: T => Boolean): (List[T], List[T]) = {
+    def innerSplit[T](list: List[T], firstList: List[T], secondList: List[T], f: T => Boolean): (List[T], List[T]) = {
       list match {
         case head :: tail => if (f(head)) {
-          innerSplit(tail, firstList :+ head, secondList)
+          innerSplit(tail, firstList :+ head, secondList, f)
         } else {
-          innerSplit(tail, firstList, secondList :+ head)
+          innerSplit(tail, firstList, secondList :+ head, f)
         }
         case Nil => (firstList, secondList)
       }
     }
 
-    innerSplit(list, List(), List())
+    innerSplit(list, List(), List(), f)
   }
 
 

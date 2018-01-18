@@ -26,7 +26,7 @@ object Application extends App {
   val concatenatedList = listOperations.concatenateLists(secondSequence, firstSequence)
   log.info(concatenatedList)
 
-  val (firstSplittedList, secondSplittedList) = listOperations.splitList(firstSequence, x => if(x%2 == 0) true else false)
+  val (firstSplittedList, secondSplittedList) = listOperations.splitList(firstSequence, (x: Int) => x%2 == 0)
   log.info(firstSplittedList)
   log.info(secondSplittedList)
 }
