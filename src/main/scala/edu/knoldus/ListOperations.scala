@@ -28,4 +28,20 @@ class ListOperations {
     innerOperate(mainList, subList, subList, subList.length, subList.length)
   }
 
+  def splitList(list: List[Int], f: Int => Boolean): (List[Int], List[Int]) = {
+    def innerSplit(list: List[Int], firstList: List[Int], secondList: List[Int]): (List[Int], List[Int]) = {
+      list match {
+        case head :: tail => if (f(head)) {
+          innerSplit(tail, firstList :+ head, secondList)
+        } else {
+          innerSplit(tail, firstList, secondList :+ head)
+        }
+        case Nil => (firstList, secondList)
+      }
+    }
+
+    innerSplit(list, List(), List())
+  }
+
+
 }
